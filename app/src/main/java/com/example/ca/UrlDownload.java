@@ -73,7 +73,7 @@ public class UrlDownload extends AsyncTask<String, Integer, ArrayList<String>> {
 
                         String url = getUrl(line);
                         Log.d("Image",url);
-                        if( Patterns.WEB_URL.matcher(url).matches() && !url.contains(".gif")){
+                        if( Patterns.WEB_URL.matcher(url).matches() && url.contains(".jpg")){
                             urlList.add(url);
                             if(urlList.size() == 20){
                                 break;

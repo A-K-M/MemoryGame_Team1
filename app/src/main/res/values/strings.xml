@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Memory Game</string>
+    <string name="defaultURL">https://stocksnap.io</string>
+    <string name="fetch">Fetch</string>
+    <string name="download">Download</string>
+    <string name="timer">0:00:00</string>
+    <string name="matches">0/6 matches</string>
 </resources>
