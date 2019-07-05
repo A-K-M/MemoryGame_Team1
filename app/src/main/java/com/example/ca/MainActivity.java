@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String filename = intent.getStringExtra("file_name");
                     bar.setProgress(count*5);
                     status.setText(String.format("Downloading %d of 20 images...",count));
-                    displayImage(filename,ivArray[count-1]);
+                    Util.displayImage(filename,ivArray[count-1]);
                 }
                 else if (action.compareTo(ACTION_DONE) == 0) {
                     allowFetching = false;
@@ -79,23 +78,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
     }
 
-
-    protected void displayImage(String fileName, ImageView ivPhoto) {
-        try {
-            File file = new File(fileName);
-            Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(file));
-            ivPhoto.setImageBitmap(bitmap);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    protected void stopReceiver() {
-        if (receiver != null) {
-            LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
-            receiver = null;
-        }
-    }
 
 
     public void start (){
@@ -149,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //Write For Second Activity
                     Intent intent = new Intent(this,SecondActivity.class);
                     intent.putExtra("selected",selectedImage);
-                    startActivity(intent);
+                    startActivityForResult(intent,0);
                     finish();
                     Toast.makeText(this, "Next Activity", Toast.LENGTH_SHORT).show();
                 }
